@@ -46,20 +46,13 @@ for (let i = 0; i < arrayLetters.length; i++) {
 function compareLetter(letter) {
   for (let i = 0; i < arrayPassword.length; i++) {
     if (letter === arrayPassword[i]) {
-      console.log(`Literka: ${letter}`);
       showUnknownLetter(letter);
     }
   }
 }
 
 function showUnknownLetter(letter) {
-  for (let i = 0; i < arrayPassword.length; i++) {
-    const temp = document.querySelector(`[letter="${letter}"]`);
-    console.log(temp);
-    // if (letter === temp.textContent) {
-    //   console.log('ok');
-    // }
-  }
+  document.querySelector(`[letter="${letter}"]`).textContent = letter;
 }
 
 
