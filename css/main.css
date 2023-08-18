@@ -37,8 +37,15 @@ h1 {
 }
 
 .hangman {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30%;
   border: solid 2px blue;
+}
+
+.counter {
+  font-size: 200px;
 }
 
 .letters {

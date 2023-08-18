@@ -1,11 +1,14 @@
 console.log('Hangman game');
 
 const letterLocation = document.querySelector('.container .game .letters .letters-board');
-
 const passwordLocation = document.querySelector('.container .game .letters .password');
 const arrayLetters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż'];
+const lifePoinsLocations = document.querySelector('.counter');
+
 let password = 'królik';
 let arrayPassword;
+let lifePoints = 8;
+let isGoodLetter;
 
 
 createKeyboard()
@@ -44,10 +47,19 @@ for (let i = 0; i < arrayLetters.length; i++) {
 }
 
 function compareLetter(letter) {
+  isGoodLetter = false;
   for (let i = 0; i < arrayPassword.length; i++) {
     if (letter === arrayPassword[i]) {
       showUnknownLetter(letter);
+      isGoodLetter = true;
     }
+  }
+  updateLifPoints(isGoodLetter);
+}
+
+function updateLifPoints(isGoodLetter) {
+  if (isGoodLetter === false) {
+    lifePoinsLocations.textContent -= 1;
   }
 }
 
