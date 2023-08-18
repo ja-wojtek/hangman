@@ -52,7 +52,10 @@ function compareLetter(letter) {
 }
 
 function showUnknownLetter(letter) {
-  document.querySelector(`[letter="${letter}"]`).textContent = letter;
+  let temp = document.querySelectorAll(`[letter="${letter}"]`);
+  for (let i = 0; i < temp.length; i++) {
+    temp[i].textContent = letter;
+  }
 }
 
 
