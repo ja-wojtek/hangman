@@ -42,21 +42,56 @@ h1 {
 }
 
 .letters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 70%;
   border: solid 2px orange;
+}
+
+.letters-board,
+.password {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.letters-split {
+  height: 50px;
 }
 
 .letter {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
+  font-size: 40px;
   margin: 10px;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   border: 2px solid orange;
   background-color: lightyellow;
   cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 5px 5px gray;
+}
+
+.letter-unknown {
+  background-color: pink;
+  cursor: default;
+}
+
+.letter-known {
+  background-color: green;
+}
+
+.letter:active {
+  box-shadow: none;
+  transform: translateX(5px) translateY(5px);
+}
+
+.letter-unknown:active {
+  box-shadow: 5px 5px gray;
+  transform: none;
 }
 
 .restartBtn {
