@@ -4,6 +4,7 @@ const letterLocation = document.querySelector('.container .game .letters .letter
 const passwordLocation = document.querySelector('.container .game .letters .password');
 const arrayLetters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż'];
 const lifePoinsLocations = document.querySelector('.counter');
+const restartBtn = document.querySelector('.restartBtn');
 
 let password = 'królik';
 let arrayPassword;
@@ -75,3 +76,5 @@ function showUnknownLetter(letter) {
     temp[i].classList.add('letter-known');
   }
 }
+
+restartBtn.addEventListener('click', function () { location.reload() })
