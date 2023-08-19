@@ -9,7 +9,7 @@ let password = 'królik';
 let arrayPassword;
 let lifePoints = 8;
 let isGoodLetter;
-
+let arrayChosenLetters = ['W'];
 
 createKeyboard()
 splitPassword(password);
@@ -56,14 +56,16 @@ function compareLetter(letter) {
       isGoodLetter = true;
     }
   }
-  letter.classList.add('letter-clicked')
-  updateLifPoints(isGoodLetter);
+  letter.classList.add('letter-clicked');
+  updateLifPoints(isGoodLetter, letter.textContent);
 }
 
-function updateLifPoints(isGoodLetter) {
-  if (isGoodLetter === false) {
+function updateLifPoints(isGoodLetter, letter) {
+  if (isGoodLetter === false && arrayChosenLetters.includes(letter) === false) {
     lifePoinsLocations.textContent -= 1;
   }
+  arrayChosenLetters.push(letter);
+  console.log(arrayChosenLetters);
 }
 
 function showUnknownLetter(letter) {
