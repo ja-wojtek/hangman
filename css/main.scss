@@ -20,9 +20,10 @@ h1 {
 .container {
   min-width: 800px;
   width: 80vw;
-  border: solid 2px black;
+  padding: 25px;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(2px);
+  border-radius: 25px;
 }
 
 .top-bar {
@@ -102,11 +103,11 @@ h1 {
 .letter-unknown:active {
   box-shadow: 5px 5px gray;
   transform: none;
-
 }
 
 .letter-clicked {
   background-color: dimgray;
+  color: lightgray;
 }
 
 .restartBtn {
@@ -115,8 +116,8 @@ h1 {
   padding: 5px;
   margin: 10px;
   text-align: center;
-  border: 2px solid black;
-  background-color: darkgoldenrod;
+  border: 2px solid gray;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   width: 100px;
 }
