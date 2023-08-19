@@ -14,10 +14,10 @@ let isGoodLetter;
 createKeyboard()
 splitPassword(password);
 createPassword();
+createListeners();
 
 function splitPassword(word) {
   arrayPassword = word.toUpperCase().split("");
-
 }
 
 function createKeyboard() {
@@ -41,19 +41,22 @@ function createPassword() {
   }
 }
 
-for (let i = 0; i < arrayLetters.length; i++) {
-  const letter = document.getElementById(`${i}`)
-  letter.closest('div').addEventListener('click', function () { compareLetter(letter.textContent) });
+function createListeners() {
+  for (let i = 0; i < arrayLetters.length; i++) {
+    const letter = document.getElementById(`${i}`)
+    letter.closest('div').addEventListener('click', function () { compareLetter(letter) });
+  }
 }
 
 function compareLetter(letter) {
   isGoodLetter = false;
   for (let i = 0; i < arrayPassword.length; i++) {
-    if (letter === arrayPassword[i]) {
-      showUnknownLetter(letter);
+    if (letter.textContent === arrayPassword[i]) {
+      showUnknownLetter(letter.textContent);
       isGoodLetter = true;
     }
   }
+  letter.classList.add('letter-clicked')
   updateLifPoints(isGoodLetter);
 }
 
@@ -67,8 +70,6 @@ function showUnknownLetter(letter) {
   let temp = document.querySelectorAll(`[letter="${letter}"]`);
   for (let i = 0; i < temp.length; i++) {
     temp[i].textContent = letter;
+    temp[i].classList.add('letter-known');
   }
 }
-
-
-
