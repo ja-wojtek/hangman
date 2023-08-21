@@ -2,11 +2,13 @@ console.log('Hangman game');
 
 const letterLocation = document.querySelector('.container .game .letters .letters-board');
 const passwordLocation = document.querySelector('.container .game .letters .password');
+const passwordCategoryLocation = document.querySelector('.category_content');
 const arrayLetters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż'];
 const lifePoinsLocations = document.querySelector('.counter');
 const restartBtn = document.querySelector('.restartBtn');
 
 let password = 'królik';
+let passwordCategory = 'Zwierzęta';
 let arrayPassword;
 let lifePoints = 8;
 let isGoodLetter;
@@ -39,6 +41,7 @@ function createPassword() {
     passwordLetters.setAttribute("letter", arrayPassword[i])
     passwordLetters.classList.add('letter');
     passwordLetters.classList.add('letter-unknown');
+    passwordCategoryLocation.textContent = passwordCategory;
   }
 }
 
@@ -78,3 +81,5 @@ function showUnknownLetter(letter) {
 }
 
 restartBtn.addEventListener('click', function () { location.reload() })
+
+console.log(passwordCategoryLocation)
