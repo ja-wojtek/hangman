@@ -68,8 +68,10 @@ function updateLifPoints(isGoodLetter, letter) {
   if (isGoodLetter === false && arrayChosenLetters.includes(letter) === false) {
     lifePoinsLocations.textContent -= 1;
   }
-  arrayChosenLetters.push(letter);
-  console.log(arrayChosenLetters);
+  if (arrayChosenLetters.includes(letter) === false){
+    arrayChosenLetters.push(letter);
+  }
+    console.log(arrayChosenLetters);
 }
 
 function showUnknownLetter(letter) {
