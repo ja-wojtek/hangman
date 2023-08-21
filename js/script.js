@@ -12,7 +12,7 @@ let passwordCategory = 'Zwierzęta';
 let arrayPassword;
 let lifePoints = 8;
 let isGoodLetter;
-let arrayChosenLetters = ['W'];
+let arrayChosenLetters = [];
 
 createKeyboard()
 splitPassword(password);
