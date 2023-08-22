@@ -2,11 +2,12 @@ console.log('Hangman game');
 
 const letterLocation = document.querySelector('.container .game .letters .letters-board');
 const passwordLocation = document.querySelector('.container .game .letters .password');
-const endGameMessageLocation= document.querySelector('.container .game .letters .letters-split .end-game-message');
+const endGameMessageLocation = document.querySelector('.container .game .letters .letters-split .end-game-message');
 const passwordCategoryLocation = document.querySelector('.category_content');
 const arrayLetters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż'];
 const lifePoinsLocations = document.querySelector('.counter');
 const restartBtn = document.querySelector('.restartBtn');
+const knownLetterLength = document.getElementsByClassName('letter-known');
 
 let password = 'królik';
 let passwordCategory = 'Zwierzęta';
@@ -14,6 +15,7 @@ let arrayPassword;
 let lifePoints = 8;
 let isGoodLetter;
 let arrayChosenLetters = [];
+let knownLetters = 0;
 
 createKeyboard()
 splitPassword(password);
@@ -54,10 +56,6 @@ function createListeners() {
 }
 
 function compareLetter(letter) {
-  if(lifePoints <= 0){
-    endGame();
-    return 0;
-  }
   isGoodLetter = false;
   for (let i = 0; i < arrayPassword.length; i++) {
     if (letter.textContent === arrayPassword[i]) {
@@ -67,6 +65,7 @@ function compareLetter(letter) {
   }
   letter.classList.add('letter-clicked');
   updateLifPoints(isGoodLetter, letter.textContent);
+  wonGame();
 }
 
 function updateLifPoints(isGoodLetter, letter) {
@@ -74,10 +73,12 @@ function updateLifPoints(isGoodLetter, letter) {
     lifePoints -= 1;
     lifePoinsLocations.textContent = lifePoints;
   }
-  if (arrayChosenLetters.includes(letter) === false){
+  if (arrayChosenLetters.includes(letter) === false) {
     arrayChosenLetters.push(letter);
   }
+  if (lifePoints <= 0) {
     endGame();
+  }
 }
 
 function showUnknownLetter(letter) {
@@ -88,10 +89,14 @@ function showUnknownLetter(letter) {
   }
 }
 
-restartBtn.addEventListener('click', function () { location.reload() })
+function endGame() {
+  endGameMessageLocation.textContent = 'Przegrałeś, Spróbój jeszcze raz';
+}
 
-function endGame(){
-  if(lifePoints <= 0){
-    endGameMessageLocation.style.display = 'block';
+function wonGame() {
+  if (knownLetterLength.length === arrayPassword.length) {
+    endGameMessageLocation.textContent = 'Gratulację!';
   }
 }
+
+restartBtn.addEventListener('click', function () { location.reload() })
