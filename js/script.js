@@ -2,6 +2,7 @@ console.log('Hangman game');
 
 const letterLocation = document.querySelector('.container .game .letters .letters-board');
 const passwordLocation = document.querySelector('.container .game .letters .password');
+const endGameMessageLocation= document.querySelector('.container .game .letters .letters-split .end-game-message');
 const passwordCategoryLocation = document.querySelector('.category_content');
 const arrayLetters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż'];
 const lifePoinsLocations = document.querySelector('.counter');
@@ -53,6 +54,10 @@ function createListeners() {
 }
 
 function compareLetter(letter) {
+  if(lifePoints <= 0){
+    endGame();
+    return 0;
+  }
   isGoodLetter = false;
   for (let i = 0; i < arrayPassword.length; i++) {
     if (letter.textContent === arrayPassword[i]) {
@@ -66,12 +71,13 @@ function compareLetter(letter) {
 
 function updateLifPoints(isGoodLetter, letter) {
   if (isGoodLetter === false && arrayChosenLetters.includes(letter) === false) {
-    lifePoinsLocations.textContent -= 1;
+    lifePoints -= 1;
+    lifePoinsLocations.textContent = lifePoints;
   }
   if (arrayChosenLetters.includes(letter) === false){
     arrayChosenLetters.push(letter);
   }
-    console.log(arrayChosenLetters);
+    endGame();
 }
 
 function showUnknownLetter(letter) {
@@ -84,4 +90,8 @@ function showUnknownLetter(letter) {
 
 restartBtn.addEventListener('click', function () { location.reload() })
 
-console.log(passwordCategoryLocation)
+function endGame(){
+  if(lifePoints <= 0){
+    endGameMessageLocation.style.display = 'block';
+  }
+}
