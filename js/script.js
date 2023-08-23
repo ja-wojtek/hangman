@@ -16,6 +16,7 @@ let lifePoints = 8;
 let isGoodLetter;
 let arrayChosenLetters = [];
 let knownLetters = 0;
+let isGameEnd = false;
 
 createKeyboard()
 splitPassword(password);
@@ -56,46 +57,52 @@ function createListeners() {
 }
 
 function compareLetter(letter) {
-  isGoodLetter = false;
-  for (let i = 0; i < arrayPassword.length; i++) {
-    if (letter.textContent === arrayPassword[i]) {
-      showUnknownLetter(letter.textContent);
-      isGoodLetter = true;
+  if (isGameEnd === false) {
+    isGoodLetter = false;
+    for (let i = 0; i < arrayPassword.length; i++) {
+      if (letter.textContent === arrayPassword[i]) {
+        showUnknownLetter(letter.textContent);
+        isGoodLetter = true;
+      }
     }
+    letter.classList.add('letter-clicked');
+    updateLifPoints(isGoodLetter, letter.textContent);
+    wonGame();
   }
-  letter.classList.add('letter-clicked');
-  updateLifPoints(isGoodLetter, letter.textContent);
-  wonGame();
 }
 
 function updateLifPoints(isGoodLetter, letter) {
-  if (isGoodLetter === false && arrayChosenLetters.includes(letter) === false) {
+  if (isGoodLetter === false && arrayChosenLetters.includes(letter) === false && isGameEnd === false) {
     lifePoints -= 1;
     lifePoinsLocations.textContent = lifePoints;
   }
   if (arrayChosenLetters.includes(letter) === false) {
     arrayChosenLetters.push(letter);
   }
-  if (lifePoints <= 0) {
-    endGame();
-  }
+  endGame();
 }
 
 function showUnknownLetter(letter) {
   let temp = document.querySelectorAll(`[letter="${letter}"]`);
-  for (let i = 0; i < temp.length; i++) {
-    temp[i].textContent = letter;
-    temp[i].classList.add('letter-known');
+  if (isGameEnd === false) {
+    for (let i = 0; i < temp.length; i++) {
+      temp[i].textContent = letter;
+      temp[i].classList.add('letter-known');
+    }
   }
 }
 
 function endGame() {
-  endGameMessageLocation.textContent = 'Przegrałeś, Spróbój jeszcze raz';
+  if (lifePoints <= 0) {
+    endGameMessageLocation.textContent = 'Przegrałeś, Spróbój jeszcze raz';
+    isGameEnd = true;
+  }
 }
 
 function wonGame() {
   if (knownLetterLength.length === arrayPassword.length) {
     endGameMessageLocation.textContent = 'Gratulację!';
+    isGameEnd = true;
   }
 }
 
