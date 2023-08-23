@@ -94,8 +94,9 @@ function showUnknownLetter(letter) {
 
 function endGame() {
   if (lifePoints <= 0) {
-    endGameMessageLocation.textContent = 'Przegrałeś, Spróbój jeszcze raz';
+    endGameMessageLocation.textContent = 'Przegrałeś, spróbój jeszcze raz';
     isGameEnd = true;
+    showPassword();
   }
 }
 
@@ -103,6 +104,16 @@ function wonGame() {
   if (knownLetterLength.length === arrayPassword.length) {
     endGameMessageLocation.textContent = 'Gratulację!';
     isGameEnd = true;
+  }
+}
+
+function showPassword() {
+  let temp = document.querySelectorAll('.container .game .letters .password .letter-unknown');
+  if (isGameEnd === true) {
+    for (let i = 0; i < temp.length; i++) {
+      temp[i].classList.add('letter-showed');
+      temp[i].textContent = arrayPassword[i];
+    }
   }
 }
 
