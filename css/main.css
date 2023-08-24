@@ -122,6 +122,11 @@ h1 {
   width: 100px;
 }
 
+.restartBtnEnd {
+  background-color: red;
+  border: 2px solid darkred;
+}
+
 .category {
   display: flex;
   align-items: center;

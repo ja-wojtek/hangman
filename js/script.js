@@ -97,6 +97,7 @@ function endGame() {
     endGameMessageLocation.textContent = 'Przegrałeś, spróbój jeszcze raz';
     isGameEnd = true;
     showPassword();
+    restartBtn.classList.add('restartBtnEnd');
   }
 }
 
