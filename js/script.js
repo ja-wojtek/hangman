@@ -153,6 +153,35 @@ function drawHangman(lifePoints) {
       ctx.fillRect(60, 50, 2, 5);
       break;
     }
+    case 3: {
+      ctx.beginPath();
+      ctx.moveTo(61, 55);
+      ctx.lineTo(40, 70);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(61, 55);
+      ctx.lineTo(80, 70);
+      ctx.stroke();
+      break;
+    }
+    case 2: {
+      ctx.fillRect(60, 55, 2, 20);
+      break;
+    }
+    case 1: {
+      ctx.beginPath();
+      ctx.moveTo(61, 75);
+      ctx.lineTo(40, 90);
+      ctx.stroke();
+      break;
+    }
+    case 0: {
+      ctx.beginPath();
+      ctx.moveTo(61, 75);
+      ctx.lineTo(80, 90);
+      ctx.stroke();
+      break;
+    }
     default: {
       ctx.fillRect(0, 0, 100, 100);
     }
