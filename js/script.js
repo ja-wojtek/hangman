@@ -5,14 +5,14 @@ const passwordLocation = document.querySelector('.container .game .letters .pass
 const endGameMessageLocation = document.querySelector('.container .game .letters .letters-split .end-game-message');
 const passwordCategoryLocation = document.querySelector('.category_content');
 const arrayLetters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż'];
-const lifePoinsLocations = document.querySelector('.counter');
+//const lifePoinsLocations = document.querySelector('.counter');
 const restartBtn = document.querySelector('.restartBtn');
 const knownLetterLength = document.getElementsByClassName('letter-known');
 
 let password = 'królik';
 let passwordCategory = 'Zwierzęta';
 let arrayPassword;
-let lifePoints = 8;
+let lifePoints = 10;
 let isGoodLetter;
 let arrayChosenLetters = [];
 let knownLetters = 0;
@@ -22,6 +22,9 @@ createKeyboard()
 splitPassword(password);
 createPassword();
 createListeners();
+
+const canvas = document.getElementById('hangman-drawing');
+const ctx = canvas.getContext('2d');
 
 function splitPassword(word) {
   arrayPassword = word.toUpperCase().split("");
@@ -74,11 +77,12 @@ function compareLetter(letter) {
 function updateLifPoints(isGoodLetter, letter) {
   if (isGoodLetter === false && arrayChosenLetters.includes(letter) === false && isGameEnd === false) {
     lifePoints -= 1;
-    lifePoinsLocations.textContent = lifePoints;
+    //lifePoinsLocations.textContent = lifePoints;
   }
   if (arrayChosenLetters.includes(letter) === false) {
     arrayChosenLetters.push(letter);
   }
+  drawHangman(lifePoints);
   endGame();
 }
 
@@ -114,6 +118,43 @@ function showPassword() {
     for (let i = 0; i < temp.length; i++) {
       temp[i].classList.add('letter-showed');
       temp[i].textContent = arrayPassword[i];
+    }
+  }
+}
+
+function drawHangman(lifePoints) {
+  ctx.fillStyle = "rgb(160, 160, 160)";
+  ctx.strokeStyle = "rgb(160, 160, 160)";
+  switch (lifePoints) {
+    case 9: {
+      ctx.fillRect(10, 180, 80, 2);
+      break;
+    }
+    case 8: {
+      ctx.fillRect(20, 20, 2, 160);
+      break;
+    }
+    case 7: {
+      ctx.fillRect(20, 20, 40, 2);
+      break;
+    }
+    case 6: {
+      ctx.fillRect(60, 20, 2, 10);
+      break;
+    }
+    case 5: {
+      ctx.beginPath();
+      ctx.arc(61, 40, 10, 1, 360);
+      ctx.stroke();
+      ctx.fill();
+      break;
+    }
+    case 4: {
+      ctx.fillRect(60, 50, 2, 5);
+      break;
+    }
+    default: {
+      ctx.fillRect(0, 0, 100, 100);
     }
   }
 }
