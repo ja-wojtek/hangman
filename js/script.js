@@ -98,7 +98,7 @@ function showUnknownLetter(letter) {
 
 function endGame() {
   if (lifePoints <= 0) {
-    endGameMessageLocation.textContent = 'Przegrałeś, spróbój jeszcze raz';
+    endGameMessageLocation.textContent = 'Przegrałeś, spróbuj jeszcze raz';
     isGameEnd = true;
     showPassword();
     restartBtn.classList.add('restartBtnEnd');
