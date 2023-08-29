@@ -5,7 +5,6 @@ const passwordLocation = document.querySelector('.container .game .letters .pass
 const endGameMessageLocation = document.querySelector('.container .game .letters .letters-split .end-game-message');
 const passwordCategoryLocation = document.querySelector('.category_content');
 const arrayLetters = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ń', 'O', 'Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ź', 'Ż'];
-//const lifePoinsLocations = document.querySelector('.counter');
 const restartBtn = document.querySelector('.restartBtn');
 const knownLetterLength = document.getElementsByClassName('letter-known');
 
